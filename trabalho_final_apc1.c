@@ -108,6 +108,76 @@ int main() {
                 }
                 break;
             }
+
+            case 4: {
+                printf("\n--- ATUALIZAR JOGO ---\n");
+                if (quantidade_jogos == 0) {
+                    printf("Nenhum jogo cadastrado no momento.\n");
+                } else {
+                    int id_atualizar;
+                    printf("Informe o ID do jogo que deseja atualizar: ");
+                    scanf("%i", &id_atualizar);
+                    while(getchar() != '\n');
+
+                    int posicao = -1;
+                    for (int i = 0; i < quantidade_jogos; i++) {
+                        if (jogos[i].id == id_atualizar) {
+                            posicao = i;
+                            break;
+                        }
+                    }
+
+                    if (posicao == -1) {
+                        printf("Jogo nao encontrado.\n");
+                    } else {
+                        printf("Novo titulo do jogo: ");
+                        scanf("%[^\n]s", jogos[posicao].titulo);
+                        while(getchar() != '\n');
+
+                        printf("Novo ano de lancamento: ");
+                        scanf("%i", &jogos[posicao].ano_lancamento);
+                        while(getchar() != '\n');
+
+                        printf("Novo preco: ");
+                        scanf("%f", &jogos[posicao].preco);
+                        while(getchar() != '\n');
+
+                        printf("Dados atualizados com sucesso!\n");
+                    }
+                }
+                break;
+            }
+            
+            case 5: {
+                printf("\n--- REMOVER JOGO ---\n");
+                if (quantidade_jogos == 0) {
+                    printf("Nenhum jogo cadastrado no momento.\n");
+                } else {
+                    int id_remover;
+                    printf("Informe o ID do jogo que deseja remover: ");
+                    scanf("%i", &id_remover);
+                    while(getchar() != '\n');
+
+                    int posicao_remover = -1;
+                    for (int i = 0; i < quantidade_jogos; i++) {
+                        if (jogos[i].id == id_remover) {
+                            posicao_remover = i;
+                            break;
+                        }
+                    }
+
+                    if (posicao_remover == -1) {
+                        printf("Jogo nao encontrado.\n");
+                    } else {
+                        for (int i = posicao_remover; i < quantidade_jogos - 1; i++) {
+                            jogos[i] = jogos[i + 1];
+                        }
+                        quantidade_jogos--; 
+                        printf("Jogo removido com sucesso!\n");
+                    }
+                }
+                break;
+            }
             
             case 6: {
                 printf("\nEncerrando o sistema. Ate logo!\n");
